@@ -218,8 +218,10 @@ def decode_text(s):
     else:
         return ''.join( PDFDocEncoding[ord(c)] for c in s )
 
-def htmlescape(s, encoding='ascii'):
+def htmlescape(s, encoding=None):
     """Escapes a string for SGML/XML/HTML"""
+    if not encoding:
+        encoding = 'ascii'
     s = s.replace('&','&amp;').replace('>','&gt;').replace('<','&lt;').replace('"','&quot;')
     # Additionally to basic replaces, we also make sure that all characters are convertible to our
     # target encoding. If they're not, they're replaced by XML entities.
